@@ -1,29 +1,76 @@
-.item
-    display: inline-block
-    background-color: pink
-    border: .3rem solid fuchsia
-    border-radius: 1rem
-    border-style: dotted
-    text-decoration: none
-    cursor: pointer
-    padding: .5rem
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-
+.item-list
+    display: flex
+    flex-direction: column
+    padding: 0
+    &__item
+        display: flex
+        border-radius: 20px
+    &__link
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        margin-bottom: 3%      
     &__title
-        color: fuchsia
-
-    &__image
-        display: block
-        border-radius: .5rem
-        margin: .5rem auto .5rem auto
-        max-width: 20vw
-
-    &__price
-        display: inline-block
-        border: .3rem solid white
-        border-radius: 1rem
-        border-style: dotted
         color: white
-        background-color: red
-        padding: .5rem
-        font-size: 2rem
+        background-color: LightSteelBlue 
+        border: 2px dotted black
+        border-radius: .9em
+        font-size: 1.2em
+        padding: 0 2%
+    &__image
+        width: 60%
+        border-radius: 60px
+    &__description
+        padding: 0 2%        
+    &__price
+        color: black
+        font-weight: bold
+        border-bottom: 2px solid black
+        align-self: center
+        font-size: 1.2em
+    &__button
+        border-radius: 20px
+        background: MintCream 
+        border: 2px solid black
+        font-size: 1.2em 
+        font-weight: bold
+        align-self: center
+
+   
+
+@media (min-width: 768px)
+    .items
+        display: flex
+        justify-content: center
+        
+    .item-list
+        flex-flow: row wrap
+        justify-content: space-around
+        max-width: 90%
+        &__image
+            max-width: 19em
+            background-size: cover
+            
+
+@media (min-width: 1024px)
+    .item-list 
+        flex-direction: row
+        justify-content: center
+        flex-wrap: wrap    
+        &__image            
+            background-size: cover
+        &__title
+            font-size: .9em
+            text-align: center
+        &__image
+            max-width: 30em
+        &__description
+            font-size: 1.2em
+        &__title
+            font-size: 1.8em
+        &__price
+            font-size: 1.8em
+        &__button
+            font-size: 1.8em
+       

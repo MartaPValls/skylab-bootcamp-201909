@@ -1,4 +1,4 @@
-function Login({ onLogin, onGoRegister }) {
+function Login({ onLogin, onGoRegister, error }) {
     return <section className="view login _hide">
         <div className="login__div">
             <form className="login__form" onSubmit={ function (event){
@@ -22,12 +22,7 @@ function Login({ onLogin, onGoRegister }) {
 
             }> Go to Register</button>
         </div>
-        <section className="view feedback hide">
-            <span className="feedback__icon">🤡</span>
-            <p className="feedback__message">Come with me...</p>
-            <span className="feedback__icon">🎈</span>
-        </section> 
-
+         {error && <Feedback message={error}/>}  
         </section>
 }
 

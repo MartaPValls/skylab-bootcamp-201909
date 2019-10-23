@@ -6,26 +6,17 @@ class App extends Component {
 
         this.state = { view: 'login', error: undefined, user: undefined, ducks: []}
 
-        this.handleonGoLogin = this.handleonGoLogin.bind(this)
-        this.handleonGoRegister = this.handleonGoRegister.bind(this)
-        this.handleRegister = this.handleRegister.bind(this)
-        this.handleLogin = this.handleLogin.bind(this)
-        this.handleSearch = this.handleSearch.bind(this)
-        this.handleonSignOut = this.handleonSignOut.bind(this)
-        this.handleDetail = this.handleDetail.bind(this)
-        this.handleBackToSearch = this.handleBackToSearch.bind(this)
-
     }
 
-    handleonGoLogin(){
+    handleonGoLogin = () => {
         this.setState({ view: 'login', error: undefined})
     }
     
-    handleonGoRegister(){
+    handleonGoRegister = () => {
         this.setState({ view: 'register', error: undefined})
     }
 
-    handleRegister(name, surname, email, password){
+    handleRegister = (name, surname, email, password) => {
         try{
             registerUser(name, surname, email, password, error => {
                 if(error) this.setState({ error: error.message})
@@ -37,7 +28,7 @@ class App extends Component {
         }
     }
     
-    handleLogin(email, password){
+    handleLogin = (email, password) => {
         try{
             authenticateUser(email, password, (error, response) => {
                 if(error){
@@ -60,7 +51,7 @@ class App extends Component {
         }
     }
 
-    handleSearch(query) {
+    handleSearch = (query) => {
         try {
             searchDucks(query, (error, ducks) => {
                 if (error) {
@@ -83,12 +74,12 @@ class App extends Component {
 
      
 
-    handleonSignOut(){
+    handleonSignOut = () => {
         this.setState({ view: 'login', user: undefined})
         
     }
 
-    handleDetail(id){
+    handleDetail = (id)=> {
         try{ 
             retrieveDuck(id, (error, duck) => {
                 if(error){
@@ -104,7 +95,7 @@ class App extends Component {
         
     }
     
-    handleBackToSearch(){
+    handleBackToSearch = () => {
         this.setState({ view: 'search' })
     }
 

@@ -13,15 +13,16 @@ class App extends Component {
         this.handleSearch = this.handleSearch.bind(this)
         this.handleonSignOut = this.handleonSignOut.bind(this)
         this.handleDetail = this.handleDetail.bind(this)
+        this.handleBackToSearch = this.handleBackToSearch.bind(this)
 
     }
 
     handleonGoLogin(){
-        this.setState({ view: 'login'})
+        this.setState({ view: 'login', error: undefined})
     }
     
     handleonGoRegister(){
-        this.setState({ view: 'register'})
+        this.setState({ view: 'register', error: undefined})
     }
 
     handleRegister(name, surname, email, password){
@@ -68,10 +69,10 @@ class App extends Component {
                 } else {
                     if(query.length === 0) {
                         ducks = ducks.shuffle().splice(0, 3)
-                        this.setState({ ducks })
+                        this.setState({ error: undefined, ducks })
                     }
                     else {
-                        this.setState({ ducks })
+                        this.setState({ error: undefined, ducks })
                     }
                 }
             })            
@@ -88,27 +89,36 @@ class App extends Component {
     }
 
     handleDetail(id){
-        retrieveDucks(id, (error, duck) => {
-            if(error){
-                this.setState({ error: error.message})
-            } else {
-                this.setState({ view: 'detail', user: undefined, ducks: duck})
-            }
-        })   
+        try{ 
+            retrieveDuck(id, (error, duck) => {
+                if(error){
+                    this.setState({ error: error.message})
+                } else {
+                    this.setState({ view: 'detail', user: undefined, duck})
+                }
+            })   
+
+        } catch (error) {
+            this.setState({ error: error.message })
+        }
+        
     }
     
+    handleBackToSearch(){
+        this.setState({ view: 'search' })
+    }
 
     render() {
-        const { state: { view, error, user, ducks }, handleonGoLogin, handleonGoRegister, handleRegister, handleLogin, handleSearch, handleonSignOut, handleDetail } = this
-        debugger
+        const { state: { view, error, user, ducks, duck }, handleonGoLogin, handleonGoRegister, handleRegister, handleLogin, handleSearch, handleonSignOut, handleDetail, handleBackToSearch } = this
+        
         return <>
         <Header user = {user} onSignOut = {handleonSignOut}/>
         {view === 'register' && <Register onRegister={handleRegister} onGoLogin={handleonGoLogin} error={error}/>}
-        {view === 'login' && <Login onLogin = {handleLogin} onGoRegister={handleonGoRegister} error={error}/>}
-        {view === 'search' && <Search onSearch = {handleSearch} error={error} />}
-        {view === 'search' && <Results onClickItem= {handleDetail} duckslist= {ducks}/> }
+        {view === 'login' && <Login onLogin ={handleLogin} onGoRegister={handleonGoRegister} error={error}/>}
+        {view === 'search' && <Search onSearch={handleSearch} error={error} />}
+        {view === 'search' && <Results onClickItem={handleDetail} duckslist= {ducks}/> }
         
-        {view === 'detail' && < Detail />}
+        {view === 'detail' && < Detail item={duck} onBack={handleBackToSearch} />}
         
         <Footer/>
         </>

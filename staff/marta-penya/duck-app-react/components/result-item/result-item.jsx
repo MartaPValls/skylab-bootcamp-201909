@@ -1,7 +1,6 @@
-function ResultItem({pato, onGoDetail}){
+function ResultItem({item, onGoDetail}){
 
-    const {id, title, imageUrl, price} = pato
-
+    const {id, title, imageUrl, price} = item
 
     return <li className="item-list__li"> 
     <a className="item-list__link" onClick= {

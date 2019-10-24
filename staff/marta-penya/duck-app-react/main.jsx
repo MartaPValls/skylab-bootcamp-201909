@@ -129,17 +129,35 @@ class App extends Component {
         this.setState({ view: 'search' })
     }
 
+    handleFav = (id) => {
+        try {
+            retrieveUser(sessionStorage.id, sessionStorage.token, (error, data) =>{debugger
+                if (error) this.setState({ error: error.message })
+                else{
+                    let favs
+                    data.fav ? favs = data.fav :  favs = []
+                    favs.includes(id) ? favs = data.fav.filter(a => a !== id) : favs.push(id)
+                    toggleFav(data.id, sessionStorage.token, { fav: favs }, (error, result) => {
+                        if (error) this.setState({ error: error.message })
+                    })
+                }
+            })
+        } catch (error) {
+            this.setState({ error: error.message })
+        }
+    }
+
     render() {
-        const { state: { view, error, user, ducks, duck, query }, handleonGoLogin, handleonGoRegister, handleRegister, handleLogin, handleSearch, handleonSignOut, handleDetail, handleBackToSearch } = this
+        const { state: { view, error, user, ducks, duck, query }, handleonGoLogin, handleonGoRegister, handleRegister, handleLogin, handleSearch, handleonSignOut, handleDetail, handleBackToSearch, handleFav } = this
 
         return <>
             <Header user={user} onSignOut={handleonSignOut} />
             {view === 'register' && <Register onRegister={handleRegister} onGoLogin={handleonGoLogin} error={error} />}
             {view === 'login' && <Login onLogin={handleLogin} onGoRegister={handleonGoRegister} error={error} />}
             {view === 'search' && <Search onSearch={handleSearch} error={error} query={query} />}
-            {view === 'search' && <Results onClickItem={handleDetail} duckslist={ducks} />}
+            {view === 'search' && <Results onClickItem={handleDetail} duckslist={ducks} onGoFav={handleFav} />}
 
-            {view === 'detail' && < Detail item={duck} onBack={handleBackToSearch} />}
+            {view === 'detail' && < Detail item={duck} onBack={handleBackToSearch}  />}
 
             <Footer />
         </>

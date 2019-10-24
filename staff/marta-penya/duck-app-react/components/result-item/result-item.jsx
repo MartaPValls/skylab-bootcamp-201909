@@ -1,4 +1,4 @@
-function ResultItem({item, onGoDetail}){
+function ResultItem({item, onGoDetail, onFav}){
 
     const {id, title, imageUrl, price} = item
 

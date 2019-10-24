@@ -1,10 +1,10 @@
-function Search({ onSearch, error }) {
+function Search({ onSearch, error, query }) {
     return <section className="view search _hide">
         <div>
-    <form className="search__form" onSubmit={ function (event){
+    <form className="search__form" onSubmit={ event => {
             event.preventDefault()
 
-            const {query: {value: query}} = event.target
+            const query = event.target.query.value
                 
             onSearch(query)
     }

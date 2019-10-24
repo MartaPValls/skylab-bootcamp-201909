@@ -2,10 +2,28 @@ const { Component } = React
 
 const {id, token} = sessionStorage
 
-class App extends Component {
-    state = { view: 'login', error: undefined, user: undefined,  ducks: []}
+const { query } = location
 
-    
+class App extends Component {
+    state = { view: 'login', error: undefined, user: undefined,  ducks: [], query}
+
+    componentWillMount() {
+        const { id, token } = sessionStorage
+
+        if (id && token)
+            try {
+                retrieveUser(id, token, (error, { name }) => {
+                    if (error) this.setState({ error: error.message })
+                    else this.setState({ user: name })
+                })
+            } catch (error) {
+                this.setState({ error: error.message })
+            }
+
+        const { state: { query } } = this
+
+        query && this.handleSearch(query)
+    }  
 
     handleonGoLogin = () => {
         this.setState({ view: 'login', error: undefined})
@@ -49,15 +67,6 @@ class App extends Component {
                     } catch (error){
                         this.setState({error: error.message})
                     }
-                    
-                    // retrieveUser(response.id, response.token, (error, result) => {
-                    //     this.setState({ view: 'search' })
-                    //     this.setState({ user: result})
-                        
-                    //     this.handleSearch('')
-                        
-                    //     //poner vista de hello
-                    // })
                 }
             })
 
@@ -76,9 +85,11 @@ class App extends Component {
                     if(query.length === 0) { 
                         ducks = ducks.shuffle().splice(0, 3)
                         this.setState({ error: undefined, ducks })
+                        location.query = query
                     }
                     else {
                         this.setState({ error: undefined, ducks })
+                        location.query = query
                     }
                 }
             })            
@@ -116,13 +127,13 @@ class App extends Component {
     }
 
     render() {
-        const { state: { view, error, user, ducks, duck }, handleonGoLogin, handleonGoRegister, handleRegister, handleLogin, handleSearch, handleonSignOut, handleDetail, handleBackToSearch } = this
+        const { state: { view, error, user, ducks, duck, query }, handleonGoLogin, handleonGoRegister, handleRegister, handleLogin, handleSearch, handleonSignOut, handleDetail, handleBackToSearch } = this
         
         return <>
         <Header user = {user} onSignOut = {handleonSignOut}/>
         {view === 'register' && <Register onRegister={handleRegister} onGoLogin={handleonGoLogin} error={error}/>}
         {view === 'login' && <Login onLogin ={handleLogin} onGoRegister={handleonGoRegister} error={error}/>}
-        {view === 'search' && <Search onSearch={handleSearch} error={error} />}
+        {view === 'search' && <Search onSearch={handleSearch} error={error} query={query}/>}
         {view === 'search' && <Results onClickItem={handleDetail} duckslist= {ducks}/> }
         
         {view === 'detail' && < Detail item={duck} onBack={handleBackToSearch} />}

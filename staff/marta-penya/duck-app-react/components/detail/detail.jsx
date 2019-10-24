@@ -16,6 +16,11 @@ function Detail({ item: { title, imageUrl, price, description, link }, onBack}){
                     onBack()
                 }
             }>Back</button>
+            <img className="detail-list__fav" src="https://image.flaticon.com/icons/svg/1469/1469600.svg" onClick={event => {
+                event.stopPropagation()
+
+                onFav(id)
+            }}/>
         </div>
     </section>
 </div>

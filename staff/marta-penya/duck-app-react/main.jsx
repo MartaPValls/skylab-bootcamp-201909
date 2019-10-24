@@ -1,12 +1,11 @@
 const { Component } = React
 
+const {id, token} = sessionStorage
+
 class App extends Component {
-    constructor(){
-        super()
+    state = { view: 'login', error: undefined, user: undefined,  ducks: []}
 
-        this.state = { view: 'login', error: undefined, user: undefined, ducks: []}
-
-    }
+    
 
     handleonGoLogin = () => {
         this.setState({ view: 'login', error: undefined})
@@ -30,19 +29,35 @@ class App extends Component {
     
     handleLogin = (email, password) => {
         try{
-            authenticateUser(email, password, (error, response) => {
+            authenticateUser(email, password, (error, { id , token} ) => {
                 if(error){
                     this.setState({ error: error.message })
                 } else{
+                    try{
+
+                        sessionStorage.id = id
+                        sessionStorage.token = token
+                        
+                        retrieveUser (id, token, (error, {name} ) => {
+                            if (error) this.setState ({error: error.message})
+                            else {
+                                this.setState ({view: 'search', user: name})
+                                this.handleSearch('')
+                             }
+                        })
+
+                    } catch (error){
+                        this.setState({error: error.message})
+                    }
                     
-                    retrieveUser(response.id, response.token, (error, result) => {
-                        this.setState({ view: 'search' })
-                        this.setState({ user: result})
+                    // retrieveUser(response.id, response.token, (error, result) => {
+                    //     this.setState({ view: 'search' })
+                    //     this.setState({ user: result})
                         
-                        this.handleSearch('')
+                    //     this.handleSearch('')
                         
-                        //poner vista de hello
-                    })
+                    //     //poner vista de hello
+                    // })
                 }
             })
 
@@ -58,7 +73,7 @@ class App extends Component {
                     this.setState({ error: error.message})
         
                 } else {
-                    if(query.length === 0) {
+                    if(query.length === 0) { 
                         ducks = ducks.shuffle().splice(0, 3)
                         this.setState({ error: undefined, ducks })
                     }
@@ -76,6 +91,7 @@ class App extends Component {
 
     handleonSignOut = () => {
         this.setState({ view: 'login', user: undefined})
+        sessionStorage.clear()
         
     }
 
@@ -85,7 +101,7 @@ class App extends Component {
                 if(error){
                     this.setState({ error: error.message})
                 } else {
-                    this.setState({ view: 'detail', user: undefined, duck})
+                    this.setState({ view: 'detail', duck})
                 }
             })   
 

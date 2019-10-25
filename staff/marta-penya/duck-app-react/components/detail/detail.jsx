@@ -1,6 +1,4 @@
-function Detail({ item: { title, imageUrl, price, description, link }, onBack}){
-
-
+function Detail({ item: { id, title, imageUrl, price, description, link, isFav }, onBack}){
 
     return   <div className="view detail">
     <section className = "result view">
@@ -16,8 +14,9 @@ function Detail({ item: { title, imageUrl, price, description, link }, onBack}){
                     onBack()
                 }
             }>Back</button>
-            <img className="detail-list__fav" src="https://image.flaticon.com/icons/svg/1469/1469600.svg" onClick={event => {
-                event.stopPropagation()
+            <img className="item-list__fav" src={isFav ? "https://image.flaticon.com/icons/svg/1469/1469575.svg" : "https://image.flaticon.com/icons/svg/1469/1469600.svg"} onClick={event => {
+                event.preventDefault()
+                event.stopPropagation()                
 
                 onFav(id)
             }}/>

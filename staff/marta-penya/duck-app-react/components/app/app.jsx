@@ -62,7 +62,7 @@ class App extends Component {
                             if (error) this.setState({ error: error.message })
                             else {
                                 const { name } = user
-                                this.setState({ view: 'search', user: name })
+                                this.setState({ view: 'search', user: name, error: undefined })
                                 
                             }
                         })
@@ -79,8 +79,7 @@ class App extends Component {
     }
 
     handleSearch = (query) => {
-        try { debugger
-            location.query = query
+        try {   debugger          
             searchDucks(id, token, query, (error, ducks) => {
                 if (error) {
                     this.setState({ error: error.message })

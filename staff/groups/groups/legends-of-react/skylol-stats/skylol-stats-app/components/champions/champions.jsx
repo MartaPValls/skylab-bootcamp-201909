@@ -1,5 +1,4 @@
 function Champions({  champions, GoOnDetail, onClick }) {
-    debugger
     const list = champions.map((champ, i) => 
         < ChampionItem key={i.toString()} item={champ} onDetail={GoOnDetail} />)
     return <> 

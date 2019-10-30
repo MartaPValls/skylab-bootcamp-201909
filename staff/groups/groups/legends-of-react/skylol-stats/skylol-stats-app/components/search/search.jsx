@@ -1,4 +1,4 @@
-function Search( {error} ){
+function Search( {onSubmit, error, query} ){
     return    <section className="search">
     <h2 className="search__title">Search</h2>
     <form className="search__form" onSubmit={event => {
@@ -8,7 +8,7 @@ function Search( {error} ){
 
             onSubmit(query)
         }}>
-        <input type="text" className="search__field" name="summoner" placeholder="Summoner"/>
+        <input type="text" className="search__field" name="query" placeholder="search" defaultValue={query}/>
         <button className="search__submit"><i className="fas fa-search"></i></button>
     </form>
     {error && <Feedback message={error} />}

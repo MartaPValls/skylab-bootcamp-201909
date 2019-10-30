@@ -3,7 +3,7 @@ const { Component } = React
 const { id, token } = sessionStorage
 
 class App extends Component {
-    state = { view: 'landing', error: undefined, user: undefined, champions: [],  champ: {} }
+    state = { view: 'landing', error: undefined, user: undefined, champions: [],  champ: {}, query: "" }
 
 
     handleRegister = (name, surname, summoner, email, password) => {
@@ -67,9 +67,9 @@ class App extends Component {
         this.setState({ view: 'summoners', error: undefined })
     }
 
-    handleChampions = () => {
+    handleChampions = query => {
         try {
-            retrieveChampions((error, result) => {
+            retrieveChampions(query, (error, result) => {
                 
                 if (error) this.setState({ error: error.message })
                 else {
@@ -102,17 +102,32 @@ class App extends Component {
         }
     }
 
+    handleTag = tag => {
+        try{
+            retrieveTag(tag, (error, result) => {
+                if (error) this.setState({ error: error.message })
+                else {
+                    
+                    this.setState({ view: 'champions', error: undefined, champions: result })
+                }
+            })
+        }
+        catch (error) {
+            this.setState({ error: error.message })
+        }
+    }
+
 
     render() {
-        const { state: { view, error, user, champions, champ }, handleHome, handleGoToLogin, handleGoToRegister, handleonSignOut, handleRegister, handleLogin, handleSummoners, handleChampions, handleDetail } = this
+        const { state: { view, error, user, champions, champ, query, tag }, handleHome, handleGoToLogin, handleGoToRegister, handleonSignOut, handleRegister, handleLogin, handleSummoners, handleChampions, handleDetail, handleTag } = this
 
         return <>
             <Header user={user} onHome={handleHome} onLogin={handleGoToLogin} onRegister={handleGoToRegister} onSummoners={handleSummoners} onChampions={handleChampions} onSignOut={handleonSignOut} />
             {view === 'landing' && <Landing />}
             {view === 'register' && <Register onRegister={handleRegister} error={error} />}
             {view === 'login' && <Login onLogin={handleLogin} error={error} />}
-            {view === 'champions' && <Search error={error} />}
-            {view === 'champions' && <Champions champions={champions} error={error} GoOnDetail={handleDetail} />}
+            {view === 'champions' && <Search onSubmit={handleChampions} error={error} />}
+            {view === 'champions' && <Champions onClick ={handleTag} champions={champions} error={error} GoOnDetail={handleDetail} />}
             {view === 'summoners' && <Search error={error} />}
             {view === 'detail' && <Detail champ={champ} error={error} />}
 

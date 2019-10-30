@@ -130,7 +130,6 @@ body
     display: flex
     align-items: center
     flex-direction: column
-    display: none
     &__title
         text-align: center
     &__form
@@ -171,7 +170,7 @@ body
     position: absolute
     z-index: -2
     display: none
-.champion
+.tag
     display: flex
     align-items: center
     justify-content: center
@@ -179,7 +178,25 @@ body
     width: 70%
     margin: 0.5rem auto
     position: relative
-    display: none
+    &__selector
+        list-style: none
+        width: 6rem
+        text-align: center
+        box-shadow: 0 0 10px 4px #57d5a0
+        color: white
+        border-bottom-right-radius: 1rem
+        margin: 0 auto
+        font-size: 0.9rem
+        border: none
+        background: none
+.champion
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+    width: 80%
+    margin: 0.5rem auto
+    position: relative
     &__ancore
         text-decoration: none
         color: snow
@@ -203,6 +220,7 @@ body
     margin: 0.5rem auto
     width: 60vw
     height: 90vh
+    display: none
     &__content
         display: flex
     &__image

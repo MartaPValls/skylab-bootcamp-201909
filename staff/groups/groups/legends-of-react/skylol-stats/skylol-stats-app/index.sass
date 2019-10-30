@@ -169,6 +169,28 @@ body
     opacity: 0.2
     position: absolute
     z-index: -2
+.tag
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-wrap: wrap
+    width: 70%
+    margin: 0.5rem auto
+    position: relative
+    &__selector
+        list-style: none
+        width: 6rem
+        text-align: center
+        box-shadow: 0 0 10px 4px #57d5a0
+        color: white
+        border-bottom-right-radius: 1rem
+        margin: 0 auto
+        font-size: 0.9rem
+        border: none
+        background: none
+        &:hover
+            filter: brightness(1.5)
+            cursor: pointer
 
 .champion
     display: flex
@@ -178,6 +200,7 @@ body
     width: 70%
     margin: 0.5rem auto
     position: relative
+    list-style: none
     &__ancore
         text-decoration: none
         color: snow
@@ -186,7 +209,6 @@ body
         text-decoration-color: snow
     &__content
         margin-right: 5rem
-        list-style: none
     &__info
         position: absolute
         z-index: -1
@@ -197,6 +219,8 @@ body
     &__image:hover
         opacity: 0.2
         transition: opacity 800ms
+    &__tags
+        list-style: none
 .detail
     margin: 0.5rem auto
     width: 60vw

@@ -205,6 +205,32 @@ body {
   z-index: -2;
 }
 
+.tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 70%;
+  margin: 0.5rem auto;
+  position: relative;
+}
+.tag__selector {
+  list-style: none;
+  width: 6rem;
+  text-align: center;
+  box-shadow: 0 0 10px 4px #57d5a0;
+  color: white;
+  border-bottom-right-radius: 1rem;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  border: none;
+  background: none;
+}
+.tag__selector:hover {
+  filter: brightness(1.5);
+  cursor: pointer;
+}
+
 .champion {
   display: flex;
   align-items: center;
@@ -213,6 +239,7 @@ body {
   width: 70%;
   margin: 0.5rem auto;
   position: relative;
+  list-style: none;
 }
 .champion__ancore {
   text-decoration: none;
@@ -224,7 +251,6 @@ body {
 }
 .champion__content {
   margin-right: 5rem;
-  list-style: none;
 }
 .champion__info {
   position: absolute;
@@ -238,6 +264,9 @@ body {
 .champion__image:hover {
   opacity: 0.2;
   transition: opacity 800ms;
+}
+.champion__tags {
+  list-style: none;
 }
 
 .detail {

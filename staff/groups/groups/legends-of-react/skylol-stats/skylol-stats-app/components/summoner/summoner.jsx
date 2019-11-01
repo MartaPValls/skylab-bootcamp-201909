@@ -17,6 +17,20 @@ function Summoner({ summonerIds, rank, masteries, error}) {
 
     <div className="summoner-detail__champions">
         <ul className="summoner-detail__list">
+            {masteries.map((master, i) => {
+                if(i<=5){
+                return <li>
+                <article className="summoner-detail__container">
+                    <p className="summoner-detail__name ">
+                        {master}
+                    </p>
+                    <img
+                        className={`summoner-detail__image mastery-${masteries[0].championLevel}`}
+                        src={master}/>
+                    <p className="summoner-detail__points">
+                        {master}</p>
+                </article>
+            </li>}})}
             <li className="summoner-detail__champion">
                 <article className="summoner-detail__container">
                     <p className="summoner-detail__name ">
@@ -41,7 +55,7 @@ function Summoner({ summonerIds, rank, masteries, error}) {
                     {masteries[1].championPoints}</p>
                 </article>
             </li>
-            <li className="summoner-detail__champion">
+            {/* <li className="summoner-detail__champion">
                 <article className="summoner-detail__container">
                     <p className="summoner-detail__name">
                     {masteries[2].name}
@@ -88,7 +102,7 @@ function Summoner({ summonerIds, rank, masteries, error}) {
                     <p className="summoner-detail__points">
                     {masteries[5].championPoints}</p>
                 </article>
-            </li>
+            </li> */}
           
         </ul>
     </div>

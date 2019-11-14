@@ -1,11 +1,13 @@
 const { expect } = require('chai')
+const users = require('../../data/users')('test')
 const authenticateUser = require('.')
 const { ContentError, CredentialsError } = require('../../utils/errors')
 const { random } = Math
-const users = require('../../data/users')
 const uuid = require('uuid/v4')
 
 describe('logic - authenticate user', () => {
+    before(() => users.load())
+
     let id, name, surname, email, username, password
 
     beforeEach(() => {
@@ -16,10 +18,10 @@ describe('logic - authenticate user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
-        users.push({ id, name, surname, email, username, password})
+        users.data.push({ id, name, surname, email, username, password })
     })
 
-    it('should succeed on correct credentials', () => 
+    it('should succeed on correct credentials', () =>
         authenticateUser(username, password)
             .then(_id => {
                 expect(_id).to.exist
@@ -29,13 +31,13 @@ describe('logic - authenticate user', () => {
                 expect(_id).to.equal(id)
             })
     )
-    
+
     describe('when wrong credentials', () => {
-        it('should fail on wrong username', () =>{
+        it('should fail on wrong username', () => {
             const username = 'wrong'
 
             return authenticateUser(username, password)
-                .then(() => { throw new Error('should not reach this point')})
+                .then(() => { throw new Error('should not reach this point') })
                 .catch(error => {
                     expect(error).to.exist
                     expect(error).to.be.an.instanceOf(CredentialsError)
@@ -59,7 +61,7 @@ describe('logic - authenticate user', () => {
                 })
         })
     })
-    
+
     it('should fail on incorrect name, surname, email, password, or expression type and content', () => {
         expect(() => authenticateUser(1)).to.throw(TypeError, '1 is not a string')
         expect(() => authenticateUser(true)).to.throw(TypeError, 'true is not a string')
@@ -81,4 +83,6 @@ describe('logic - authenticate user', () => {
         expect(() => authenticateUser(email, '')).to.throw(ContentError, 'password is empty or blank')
         expect(() => authenticateUser(email, ' \t\r')).to.throw(ContentError, 'password is empty or blank')
     })
+
+    // TODO other cases
 })

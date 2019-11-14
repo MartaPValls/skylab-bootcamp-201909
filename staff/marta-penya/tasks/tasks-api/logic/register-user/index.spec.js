@@ -1,10 +1,12 @@
 const { expect } = require('chai')
+const users = require('../../data/users')('test')
 const registerUser = require('.')
 const { ContentError } = require('../../utils/errors')
-const users = require('../../data/users')
 const { random } = Math
 
 describe('logic - register user', () => {
+    before(() => users.load())
+
     let name, surname, email, username, password
 
     beforeEach(() => {
@@ -20,7 +22,7 @@ describe('logic - register user', () => {
             .then(response => {
                 expect(response).to.be.undefined
 
-                const user = users.find(user => user.username === username)
+                const user = users.data.find(user => user.username === username)
 
                 expect(user).to.exist
 
@@ -38,8 +40,8 @@ describe('logic - register user', () => {
     )
 
     describe('when user already exists', () => {
-        beforeEach( () => {
-            users.push({ name, surname, email, username, password })
+        beforeEach(() => {
+            users.data.push({ name, surname, email, username, password })
         })
 
         it('should fail on already existing user', () =>
@@ -53,7 +55,7 @@ describe('logic - register user', () => {
                     expect(error.message).to.exist
                     expect(typeof error.message).to.equal('string')
                     expect(error.message.length).to.be.greaterThan(0)
-                    expect(error.message).to.equal(`user with username "${username}" already exists`)
+                    expect(error.message).to.equal(`user with username ${username} already exists`)
                 })
         )
     })
@@ -95,7 +97,6 @@ describe('logic - register user', () => {
         expect(() => registerUser(name, surname, email, {})).to.throw(TypeError, '[object Object] is not a string')
         expect(() => registerUser(name, surname, email, undefined)).to.throw(TypeError, 'undefined is not a string')
         expect(() => registerUser(name, surname, email, null)).to.throw(TypeError, 'null is not a string')
-
 
         expect(() => registerUser(name, surname, email, '')).to.throw(ContentError, 'username is empty or blank')
         expect(() => registerUser(name, surname, email, ' \t\r')).to.throw(ContentError, 'username is empty or blank')

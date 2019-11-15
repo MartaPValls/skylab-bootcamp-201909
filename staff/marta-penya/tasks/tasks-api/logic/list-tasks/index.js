@@ -12,6 +12,10 @@ module.exports = function (id) {
 
         if (!user) return reject(new NotFoundError(`user with id ${id} not found`))
 
-        tasks.data.then(() => resolve(tasks)).catch(reject)
+        const _tasks = tasks.data.filter(({ user }) => user === id)
+
+        _tasks.forEach(task => task.lastAccess = new Date)
+
+        tasks.persist().then(() => resolve(_tasks)).catch(reject)
     })
 }

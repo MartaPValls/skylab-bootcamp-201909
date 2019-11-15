@@ -1,14 +1,14 @@
 const { expect } = require('chai')
 const users = require('../../data/users')('test')
 const tasks = require('../../data/tasks')('test')
-const createTask = require('.')
+const modifyTask = require('.')
 const { random } = Math
 const uuid = require('uuid')
 
-describe('logic - create task', () => {
+describe.only('logic - modify task', () => {
     before(() => Promise.all([users.load(), tasks.load()]))
 
-    let id, name, surname, email, username, password, title, description
+    let id, name, surname, email, username, password, title, description, taskId
 
     beforeEach(() => {
         id = uuid()
@@ -20,12 +20,26 @@ describe('logic - create task', () => {
 
         users.data.push({ id, name, surname, email, username, password })
 
+        const task = {
+            id: uuid(),
+            user: id,
+            title: `title-${random()}`,
+            description: `description-${random()}`,
+            status: 'REVIEW',
+            date: new Date,
+            lastAcces: new Date
+        }
+
+        tasks.data.push(task)
+
+        taskId = '12345'
         title = `title-${random()}`
         description = `description-${random()}`
     })
 
-    it('should succeed on correct user and task data', () =>
-        createTask(id, title, description)
+    it('should succeed on modify task', () =>
+    
+        modifyTask(id, taskId, title, description)
             .then(taskId => {
                 expect(taskId).to.exist
                 expect(taskId).to.be.a('string')

@@ -1,17 +1,16 @@
 const { expect } = require('chai')
-const tasks = require('../../data/tasks')('test')
 const users = require('../../data/users')('test')
+const tasks = require('../../data/tasks')('test')
 const createTask = require('.')
-const { ContentError } = require('../../utils/errors')
 const { random } = Math
-const uuid = require('uuid/v4')
+const uuid = require('uuid')
 
 describe.only('logic - create task', () => {
-    before(() => tasks.load())
+    before(() => Promise.all([users.load(), tasks.load()]))
 
-    let id, title, description, status
+    let id, name, surname, email, username, password, title, description
 
-    beforeEach(() => { 
+    beforeEach(() => {
         id = uuid()
         name = `name-${random()}`
         surname = `surname-${random()}`
@@ -22,28 +21,26 @@ describe.only('logic - create task', () => {
         users.data.push({ id, name, surname, email, username, password })
 
         title = `title-${random()}`
-        description = `description-${random()}` 
-
+        description = `description-${random()}`
     })
 
-    it('should succeed on creating a task', () =>
-        createTask(token, title, description, status)
-            .then(response => {
-                expect(response).to.be.undefined
+    it('should succeed on correct user and task data', () =>
+        createTask(id, title, description)
+            .then(taskId => {
+                expect(taskId).to.exist
+                expect(taskId).to.be.a('string')
+                expect(taskId).to.have.length.greaterThan(0)
+
+                const task = tasks.data.find(({ id }) => id === taskId)
 
                 expect(task).to.exist
-
+                expect(task.user).to.equal(id)
                 expect(task.title).to.equal(title)
                 expect(task.description).to.equal(description)
-                expect(task.status).to.equal(status)
-                expect(task.user).to.equal(user)
-
-                expect(task.id).to.exist
-                expect(task.id).to.be.a('string')
-                expect(task.id).to.have.length.greaterThan(0)
+                expect(task.status).to.equal('TODO')
+                expect(task.date).to.exist
+                expect(task.date).to.be.instanceOf(Date)
             })
     )
-
-    
-    // TODO other cases
+    // TODO other test cases
 })

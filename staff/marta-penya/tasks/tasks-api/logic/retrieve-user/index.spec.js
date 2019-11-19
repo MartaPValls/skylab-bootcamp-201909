@@ -57,4 +57,5 @@ describe('logic - retrieve user', () => {
     })
 
     // TODO other cases
+    after(() => client.close())
 })

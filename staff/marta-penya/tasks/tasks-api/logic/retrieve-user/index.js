@@ -1,4 +1,4 @@
-const validate = require('../../utils/validate')
+ const validate = require('../../utils/validate')
 const database = require('../../utils/database')
 const { NotFoundError } = require('../../utils/errors')
 const { ObjectId } = database

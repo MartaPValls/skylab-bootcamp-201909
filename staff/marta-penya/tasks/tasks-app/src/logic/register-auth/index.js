@@ -1,11 +1,4 @@
-export default function (name, surname, email, username, password) {
-	validate.string(name)
-    validate.string.notVoid('name', name)
-    validate.string(surname)
-    validate.string.notVoid('surname', surname)
-    validate.string(email)
-    validate.string.notVoid('e-mail', email)
-    validate.email(email)
+export default function (username, password) {
     validate.string(username)
     validate.string.notVoid('username', username)
     validate.string(password)
@@ -18,3 +11,15 @@ export default function (name, surname, email, username, password) {
 	})
 		.then(res => res.status === 201 ? undefined : res.json().then(({ message }) => { throw Error(message) }))
 }
+
+
+
+/*
+fetch('http://192.168.0.41:8000/auth', {
+	method: 'POST',
+	headers: { 'Content-Type': 'application/json' },
+	body: JSON.stringify({ username: 'pepito-123', password: '123' })
+})
+	.then(res => res.json())
+	.then(res => { debugger })
+*/

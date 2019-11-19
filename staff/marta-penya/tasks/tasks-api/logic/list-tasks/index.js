@@ -25,7 +25,18 @@ module.exports = function (id) {
                             if(!result.modifiedCount) throw Error('could not update tasks')
 
                             return tasks.find({ user: ObjectId(id) }).toArray()
-                                .then(tasks => tasks)
+                                .then(tasks => {
+                                    
+                                    tasks.forEach(task => {
+                                    task.id = task._id.toString()
+                                    delete task._id
+    
+                                    task.user = id
+    
+                                    task.lastAccess = lastAccess
+                                })
+                                return tasks
+                            })
                         })
                 })
         })

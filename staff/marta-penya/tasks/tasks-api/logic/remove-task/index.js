@@ -24,5 +24,8 @@ module.exports = function(id, taskId) {
 
                     return tasks.deleteOne({ _id: ObjectId(taskId) })
                 })
+                .then(result => {
+                    if (!result.deletedCount) throw Error('failed to remove task')
+                })
         })
 }

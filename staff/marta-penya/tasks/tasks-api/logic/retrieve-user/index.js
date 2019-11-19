@@ -21,6 +21,11 @@ module.exports = function (id) {
                         .then(result => {
                             if (!result.modifiedCount) throw Error('could not update user')
 
+                            user.id = user._id.toString()
+
+                            delete user._id
+                            delete user.password
+
                             const { name, surname, email, username } = user
 
                             return({ id, name, surname, email, username })

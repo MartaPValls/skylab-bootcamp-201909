@@ -4,9 +4,9 @@ const { expect } = require('chai')
 const authenticateUser = require('.')
 const { ContentError, CredentialsError } = require('../../utils/errors')
 const { random } = Math
-const { database, models: { User}} = require('../../data')
+const { database, models: { User } } = require('../../data')
 
-describe.only('logic - authenticate user', () => {
+describe('logic - authenticate user', () => {
     before(() => database.connect(DB_URL_TEST))
 
     let id, name, surname, email, username, password
@@ -18,10 +18,9 @@ describe.only('logic - authenticate user', () => {
         username = `username-${random()}`
         password = `password-${random()}`
 
-
         return User.deleteMany()
             .then(() => User.create({ name, surname, email, username, password }))
-            .then(({ insertedId }) => id = insertedId.toString())
+            .then(user => id = user.id)
     })
 
     it('should succeed on correct credentials', () =>

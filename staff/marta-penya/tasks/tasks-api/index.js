@@ -8,8 +8,7 @@ const { ConflictError, CredentialsError, NotFoundError } = require('./utils/erro
 const jwt = require('jsonwebtoken')
 const { argv: [, , port], env: { SECRET, PORT = port || 8080, DB_URL } } = process
 const tokenVerifier = require('./utils/token/token-verifier')(SECRET)
-const database = require('./utils/database')
-
+const { database } = require('./data')
 const api = express()
 
 const jsonBodyParser = bodyParser.json()
@@ -158,7 +157,6 @@ api.delete('/tasks/:taskId', tokenVerifier, (req, res) => {
     }
 })
 
-database(DB_URL)
-    .connect()
+database.connect(DB_URL)
     .then(() => api.listen(PORT, () => console.log(`${name} ${version} up and running on port ${PORT}`)))
 

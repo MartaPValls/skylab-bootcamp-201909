@@ -1,31 +1,28 @@
 const validate = require('../../utils/validate')
-const { NotFoundError } = require('../../utils/errors')
-const database = require('../../utils/database')
-const { ObjectId } = database
+const { ObjectId, models: { User, Task } } = require('../../data')
+const { NotFoundError, ConflictError } = require('../../utils/errors')
 
-module.exports = function(id, taskId) {
+module.exports = function (id, taskId) {
     validate.string(id)
     validate.string.notVoid('id', id)
+    if (!ObjectId.isValid(id)) throw new ContentError(`${id} is not a valid id`)
+
     validate.string(taskId)
-    validate.string.notVoid('taskId', taskId)
+    validate.string.notVoid('task id', taskId)
+    if (!ObjectId.isValid(taskId)) throw new ContentError(`${taskId} is not a valid task id`)
 
-    const client = database()
+    return User.findById(id)
+        .then(user => {
+            if (!user) throw new NotFoundError(`user with id ${id} not found`)
 
-    return client.connect()
-        .then(connection => {
-            const db = connection.db()
-
-            users = db.collection('users')
-            tasks = db.collection('tasks')
-
-            return users.findOne({ _id: ObjectId(id) })
-                .then(user => {
-                    if(!user) throw new NotFoundError(`user with id ${id} not found`)
-
-                    return tasks.deleteOne({ _id: ObjectId(taskId) })
-                })
-                .then(result => {
-                    if (!result.deletedCount) throw Error('failed to remove task')
-                })
+            return Task.findById(taskId)
         })
+        .then(task => {
+            if (!task) throw new NotFoundError(`user does not have task with id ${taskId}`)
+
+            if (task.user.toString() !== id.toString()) throw new ConflictError(`user with id ${id} does not correspond to task with id ${taskId}`)
+
+            return Task.deleteOne({ _id: ObjectId(taskId) })
+        })
+        .then(() => { })
 }

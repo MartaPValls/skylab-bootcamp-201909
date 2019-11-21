@@ -2,9 +2,9 @@ require('dotenv').config()
 const { env: { DB_URL_TEST } } = process
 const { expect } = require('chai')
 const { random } = Math
-const { database, models: { User } } = require('../../data')
 const retrieveUser = require('.')
-const { NotFoundError } = require('../../utils/errors')
+const { errors: { NotFoundError } } = require('tasks-util')
+const { database, models: { User } } = require('tasks-data')
 
 describe('logic - retrieve user', () => {
     before(() => database.connect(DB_URL_TEST))

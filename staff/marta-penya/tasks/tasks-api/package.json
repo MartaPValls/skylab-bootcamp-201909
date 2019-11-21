@@ -19,8 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.7.11",
     "tasks-data": "file:../tasks-data",
-    "tasks-util": "file:../tasks-util",
-    "uuid": "^3.3.3"
+    "tasks-util": "file:../tasks-util"
   },
   "devDependencies": {
     "chai": "^4.2.0",

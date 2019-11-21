@@ -23,10 +23,57 @@ ul {
   color: grey;
 }
 
+.login {
+  width: 100%;
+}
+.login__title {
+  color: grey;
+}
+.login__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.login__field {
+  border-radius: 20px;
+  background-color: inherit;
+  margin-bottom: 1rem;
+  width: 70%;
+}
+.login__submit {
+  border-radius: 20px;
+}
+
+.register {
+  width: 100%;
+}
+.register__title {
+  color: grey;
+}
+.register__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.register__field {
+  border-radius: 20px;
+  background-color: inherit;
+  margin-bottom: 1rem;
+  width: 70%;
+}
+.register__submit {
+  border-radius: 20px;
+}
+
 .task-list {
   display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .task-list__title {
   width: 80%;
@@ -36,29 +83,68 @@ ul {
   padding: 0;
   magin: 0;
 }
+.task-list__link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.tasks-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.tasks-list__title {
+  color: grey;
+  font-size: 2rem;
+  border-bottom: 4px dotted pink;
+}
 
 .item {
+  display: flex;
   border: 3px dotted pink;
   border-radius: 15px;
 }
 .item__title {
   font-size: 3rem;
+  color: #A9A9A9;
 }
 .item__description {
   color: grey;
+  text-align: center;
 }
 .item__status {
   font-size: 2rem;
+  border: 1px solid black;
+  width: 35%;
+  text-align: center;
+  border-radius: 20px;
+}
+.item__div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.item__span {
+  width: 25%;
 }
 .item__delete {
-  width: 100%;
+  width: 70%;
+}
+.item__modify {
+  width: 70%;
 }
 .item__button {
   border-style: none;
-  width: 20%;
 }
 .item__img {
   width: 100%;
+}
+.item__form {
+  display: flex;
+  margin: 0;
 }
 
 .item__status--todo {
@@ -75,6 +161,48 @@ ul {
 
 .item__status--done {
   background-color: pink;
+}
+
+.feedback {
+  border: 1px solid grey;
+  background-color: #FFB6C1;
+  border-radius: 30px;
+  margin-top: 1rem;
+  width: 100%;
+}
+.feedback__message {
+  color: white;
+  background-color: #FFB6C1;
+  text-align: center;
+  font-weight: bold;
+}
+
+.board {
+  display: flex;
+  justify-content: column;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.board__title {
+  color: grey;
+}
+.board__user {
+  color: pink;
+  border-bottom: 4px dotted grey;
+}
+.board__submit {
+  border-radius: 15px;
+}
+.board__criteria {
+  border-radius: 15px;
+}
+.board__logout {
+  margin-bottom: 0.5rem;
+}
+.board__logoutubtn {
+  border-radius: 15px;
+  font-size: 1rem;
 }
 
 /*# sourceMappingURL=index.css.map */

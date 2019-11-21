@@ -17,7 +17,7 @@
     </section>
 
     <section class="view register _hide">
-        <form>
+        <form class="register__form">
             <h1 class="register__title">Register</h1>
             <input class="register__field" type="text" name="name" placeholder="name">
             <input class="register__field" type="text" name="surname" placeholder="surname">
@@ -27,14 +27,12 @@
         </form>
 
         <section class="feedback">
-            <span class="feedback__icon">🤡</span>
             <p class="feedback__message">Come with me...</p>
-            <span class="feedback__icon">🎈</span>
         </section>
     </section>
 
     <section class="view login _hide">
-        <form>
+        <form class="login__form">
             <h1 class="login__title">Login</h1>
             <input class="login__field" type="email" name="email" placeholder="e-mail">
             <input class="login__field" type="password" name="password" placeholder="password">
@@ -42,116 +40,284 @@
         </form>
 
         <section class="feedback">
-            <span class="feedback__icon">🤡</span>
             <p class="feedback__message">Come with me...</p>
-            <span class="feedback__icon">🎈</span>
         </section>
     </section>
 
-    <section class='tasks-list'>
-        <h1 class='tasks-list__title'>My Tasks</h1>
-        <ul class='tasks-list__results'>
-            <li class='tasks-list__item item item--todo'>
-                <h2 class="item__title">Template</h2>
-                <p class="item__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
-                    dolore.</p>
-                <p class='item__status'> TODO</p>
-                <button class="item__button" type="submit"><img class='item__delete'
-                        src="https://image.flaticon.com/icons/svg/1221/1221570.svg"></button>
-                <div>
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049952.svg" alt="todo" />
-                    </button>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049989.svg" alt="doing" />
-                    </button>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049975.svg" alt="review" />
-                    </button>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://image.flaticon.com/icons/svg/1049/1049961.svg" alt="review" />
-                    </button>
-                </div>
-            </li>
-            <li class='tasks-list__item item item--todo'>
-                <h2 class="item__title">Template</h2>
-                <p class="item__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
-                    dolore.</p>
-                <p class='item__status'> TODO</p>
-                <button class="item__button" type="submit"><img class='item__delete'
-                        src="https://image.flaticon.com/icons/svg/1221/1221570.svg"></button>
-                <div>
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049952.svg" alt="todo" />
-                    </button>
+    <section class="view board _hide">
+        <h1 class="board__title">Task Board</h1>
+        <h2 class="board__user">Hello Unicorn</h2>
+        <a href="" class="board__favs">Favorites</a>
+        <form method="post" action="" class="board__logout"><button class="board__logoutubtn">Logout</button></form>
+        <form class="board__form">
+            <span class="board__icon">📝</span>
+            <input class="board__criteria" type="text" name="query" placeholder="criteria">
+            <button class="board__submit">🔍</button>
+        </form>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049989.svg" alt="doing" />
-                    </button>
+        <section class="feedback">
+            <p class="feedback__message">Come with me...</p>
+        </section>
+        <section class='tasks-list'>
+            <h1 class='tasks-list__title'>My Tasks</h1>
+            <ul class='tasks-list__results'>
+                <li class='tasks-list__item item item--todo'>
+                    <a class='task-list__link'>
+                        <h2 class="item__title">Template</h2>
+                        <p class="item__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
+                            dolore. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptas architecto tempore eos officiis illo, excepturi placeat fuga sint ullam similique! Harum magnam dignissimos ut earum eaque animi odit, ipsa ullam! </p>
+                        <p class='item__status'> TODO</p>
+                        <div class='item__div'>
+                            <span class="task__action item__span">
+                                <form method="post" action="" class="item__form">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"><img class='item__delete'
+                                            src="https://image.flaticon.com/icons/svg/1221/1221570.svg"></button>
+                                </form>
+                            </span>
+                            <span class="task__action item__span">
+                                <form method="post" action="" class="item__form">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"><img class='item__modify'
+                                            src="https://image.flaticon.com/icons/svg/282/282122.svg"></button>
+                                </form>
+                            </span>
+                        </div>
+                        <div class='item__div'>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049952.svg"
+                                            alt="todo" />
+                                    </button>
+                                </form>
+                            </span>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049975.svg" alt="review" />
-                    </button>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049989.svg"
+                                            alt="doing" />
+                                    </button>
+                                </form>
+                            </span>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049975.svg"
+                                            alt="review" />
+                                    </button>
+                                </form>
+                            </span>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://image.flaticon.com/icons/svg/1049/1049961.svg" alt="review" />
-                    </button>
-                </div>
-            </li>
-            <li class='tasks-list__item item item--todo'>
-                <h2 class="item__title">Template</h2>
-                <p class="item__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
-                    dolore.</p>
-                <p class='item__status'> TODO</p>
-                <button class="item__button" type="submit"><img class='item__delete'
-                        src="https://image.flaticon.com/icons/svg/1221/1221570.svg"></button>
-                <div>
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049952.svg" alt="todo" />
-                    </button>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://image.flaticon.com/icons/svg/1049/1049961.svg" alt="review" />
+                                    </button>
+                                </form>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                <li class='tasks-list__item item item--todo'>
+                    <a class='task-list__link'>
+                        <h2 class="item__title">Template</h2>
+                        <p class="item__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
+                            dolore.</p>
+                        <p class='item__status item__status--done'> TODO</p>
+                        <div class='item__div'>
+                            <span class="task__action item__span">
+                                <form method="post" action="" class="item__form">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"><img class='item__delete'
+                                            src="https://image.flaticon.com/icons/svg/1221/1221570.svg"></button>
+                                </form>
+                            </span>
+                            <span class="task__action item__span">
+                                <form method="post" action="" class="item__form">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"><img class='item__modify'
+                                            src="https://image.flaticon.com/icons/svg/282/282122.svg"></button>
+                                </form>
+                            </span>
+                        </div>
+                        <div class='item__div'>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049952.svg"
+                                            alt="todo" />
+                                    </button>
+                                </form>
+                            </span>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049989.svg" alt="doing" />
-                    </button>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049989.svg"
+                                            alt="doing" />
+                                    </button>
+                                </form>
+                            </span>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049975.svg"
+                                            alt="review" />
+                                    </button>
+                                </form>
+                            </span>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049975.svg" alt="review" />
-                    </button>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://image.flaticon.com/icons/svg/1049/1049961.svg" alt="review" />
+                                    </button>
+                                </form>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                <li class='tasks-list__item item item--todo'>
+                    <a class='task-list__link'>
+                        <h2 class="item__title">Template</h2>
+                        <p class="item__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
+                            dolore.</p>
+                        <p class='item__status'> TODO</p>
+                        <div class='item__div'>
+                            <span class="task__action item__span">
+                                <form method="post" action="" class="item__form">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"><img class='item__delete'
+                                            src="https://image.flaticon.com/icons/svg/1221/1221570.svg"></button>
+                                </form>
+                            </span>
+                            <span class="task__action item__span">
+                                <form method="post" action="" class="item__form">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"><img class='item__modify'
+                                            src="https://image.flaticon.com/icons/svg/282/282122.svg"></button>
+                                </form>
+                            </span>
+                        </div>
+                        <div class='item__div'>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049952.svg"
+                                            alt="todo" />
+                                    </button>
+                                </form>
+                            </span>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://image.flaticon.com/icons/svg/1049/1049961.svg" alt="review" />
-                    </button>
-                </div>
-            </li>
-            <li class='tasks-list__item item item--todo'>
-                <h2 class="item__title">Template</h2>
-                <p class="item__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
-                    dolore.</p>
-                <p class='item__status'> TODO</p>
-                <button class="item__button" type="submit"><img class='item__delete'
-                        src="https://image.flaticon.com/icons/svg/1221/1221570.svg"></button>
-                <div>
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049952.svg" alt="todo" />
-                    </button>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049989.svg"
+                                            alt="doing" />
+                                    </button>
+                                </form>
+                            </span>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049975.svg"
+                                            alt="review" />
+                                    </button>
+                                </form>
+                            </span>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049989.svg" alt="doing" />
-                    </button>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://image.flaticon.com/icons/svg/1049/1049961.svg" alt="review" />
+                                    </button>
+                                </form>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+                <li class='tasks-list__item item item--todo'>
+                    <a class='task-list__link'>
+                        <h2 class="item__title">Template</h2>
+                        <p class="item__description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa,
+                            dolore.</p>
+                        <p class='item__status'> TODO</p>
+                        <div class='item__div'>
+                            <span class="task__action item__span">
+                                <form method="post" action="" class="item__form">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"><img class='item__delete'
+                                            src="https://image.flaticon.com/icons/svg/1221/1221570.svg"></button>
+                                </form>
+                            </span>
+                            <span class="task__action item__span">
+                                <form method="post" action="" class="item__form">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"><img class='item__modify'
+                                            src="https://image.flaticon.com/icons/svg/282/282122.svg"></button>
+                                </form>
+                            </span>
+                        </div>
+                        <div class='item__div'>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049952.svg"
+                                            alt="todo" />
+                                    </button>
+                                </form>
+                            </span>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049975.svg" alt="review" />
-                    </button>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049989.svg"
+                                            alt="doing" />
+                                    </button>
+                                </form>
+                            </span>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://www.flaticon.com/premium-icon/icons/svg/1049/1049975.svg"
+                                            alt="review" />
+                                    </button>
+                                </form>
+                            </span>
 
-                    <button class="item__button" type="submit"> <img class="item__img"
-                            src="https://image.flaticon.com/icons/svg/1049/1049961.svg" alt="review" />
-                    </button>
-                </div>
-            </li>
-        </ul>
+                            <span class="task__action item__span">
+                                <form method="post" action="">
+                                    <input type="hidden" name="id">
+                                    <button class="item__button" type="submit"> <img class="item__img"
+                                            src="https://image.flaticon.com/icons/svg/1049/1049961.svg" alt="review" />
+                                    </button>
+                                </form>
+                            </span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </section>
     </section>
 </body>
 

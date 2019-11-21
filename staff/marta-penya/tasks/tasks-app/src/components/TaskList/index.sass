@@ -1,0 +1,40 @@
+.task-list
+    display: flex
+    flex-wrap: wrap
+    width: 100%
+    &__title
+        width: 80%
+    &__results
+        display: flex
+        padding: 0
+        magin: 0
+
+    
+    
+.item
+    border: 3px dotted pink 
+    border-radius: 15px
+    &__title
+        font-size: 3rem
+    &__description
+        color: grey
+    &__status
+        font-size: 2rem
+    &__delete
+        width: 100%
+    &__button
+        border-style: none
+        width: 20%
+    &__img
+        width: 100%
+    
+
+.item__status--todo
+    background-color: blue
+
+.item__status--doing
+    background-color: green
+.item__status--review
+    background-color: orange
+.item__status--done
+    background-color: pink

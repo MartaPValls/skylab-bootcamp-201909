@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css?family=Lora&display=swap");
+* {
+  background-color: #FFE4E1;
+  font-family: "Lora", serif;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.landing {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.landing__title {
+  color: white;
+  width: 80%;
+}
+.landing__options {
+  color: grey;
+}
+
+.task-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.task-list__title {
+  width: 80%;
+}
+.task-list__results {
+  display: flex;
+  padding: 0;
+  magin: 0;
+}
+
+.item {
+  border: 3px dotted pink;
+  border-radius: 15px;
+}
+.item__title {
+  font-size: 3rem;
+}
+.item__description {
+  color: grey;
+}
+.item__status {
+  font-size: 2rem;
+}
+.item__delete {
+  width: 100%;
+}
+.item__button {
+  border-style: none;
+  width: 20%;
+}
+.item__img {
+  width: 100%;
+}
+
+.item__status--todo {
+  background-color: blue;
+}
+
+.item__status--doing {
+  background-color: green;
+}
+
+.item__status--review {
+  background-color: orange;
+}
+
+.item__status--done {
+  background-color: pink;
+}
+
+/*# sourceMappingURL=index.css.map */
